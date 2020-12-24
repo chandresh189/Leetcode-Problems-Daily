@@ -1,0 +1,34 @@
+/**
+Solution to Sort List at LeetCode in C++
+author: chandresh189
+ref: https://leetcode.com/problems/sort-list/
+**/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        vector<int> v;
+        ListNode* h = head;
+        while(h != nullptr) {
+            v.push_back(h->val);
+            h = h->next;
+        }
+        h = head;
+        sort(v.begin(), v.end());
+        int cnt = 0;
+        while(h != nullptr) {
+            h->val = v[cnt++];
+            h = h->next;
+        }
+        return head;
+    }
+};
