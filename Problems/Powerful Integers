@@ -1,0 +1,20 @@
+/**
+Solution to Powerful Integers at LeetCode in Python
+author: chandresh189
+ref: https://leetcode.com/explore/challenge/card/april-leetcoding-challenge-2021/597/week-5-april-29th-april-30th/3726/
+**/
+class Solution(object):
+    def powerfulIntegers(self, x, y, b):
+        """
+        :type x: int
+        :type y: int
+        :type bound: int
+        :rtype: List[int]
+        """
+        ans = []
+        for i in range(100):
+            for j in range(100):
+                if (x**i + y**j <= b):
+                    ans.append(x**i + y**j);
+        ans = list(set(ans))
+        return ans
