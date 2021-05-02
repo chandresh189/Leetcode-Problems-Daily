@@ -1,0 +1,27 @@
+/**
+Solution to k th Symbol in Grammar at LeetCode in Pyhthon
+author: chandresh189
+ref: https://leetcode.com/problems/k-th-symbol-in-grammar
+**/
+class Solution(object):
+    def kthGrammar(self, N, K):
+        """
+        :type N: int
+        :type K: int
+        :rtype: int
+        """
+        ans = '0'
+        for i in range(N):
+            # print(ans)
+            j = 0
+            t = len(ans)
+            while(j < t+i+1):
+                # print('ans[j] h abhi ',ans[j], ' and j is ',j)
+                if ans[j] == '0':
+                    ans = ans[:j+1]+'1'+ans[j+1:]
+                else:
+                    ans = ans[:j+1]+'0'+ans[j+1:]
+                j+=2;
+        return ans[K-1]
+                    
+        
