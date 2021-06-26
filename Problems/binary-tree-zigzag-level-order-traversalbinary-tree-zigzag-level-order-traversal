@@ -1,0 +1,54 @@
+  /**
+Solution to Binary-tree-zigzag-level-order-traversal at LeetCode in C++
+author: chandresh189
+ref: https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+**/
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> v;
+        if(root==NULL)
+            return v;
+        deque<TreeNode*> dq;
+        dq.push_front(root);
+        int i=0;
+        while(!dq.empty()) {
+            int sz = dq.size();
+            vector<int> sv;
+            while(sz--) {
+                if(i%2 == 0) {
+                    TreeNode* t = dq.front();
+                    sv.push_back(t->val);
+                    dq.pop_front();
+                    if(t->left)
+                        dq.push_back(t->left);
+                    if(t->right)
+                        dq.push_back(t->right);
+                }
+                else {
+                    TreeNode* t = dq.back();
+                    sv.push_back(t->val);
+                    dq.pop_back();
+                    if(t->right)
+                        dq.push_front(t->right);
+                    if(t->left)
+                        dq.push_front(t->left);
+                }
+            }
+            i++;
+            v.push_back(sv);
+        }
+        return v;
+    }
+};
