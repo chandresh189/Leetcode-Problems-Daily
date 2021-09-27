@@ -1,0 +1,23 @@
+/**
+Solution to Unique Email Addresses at LeetCode in Python
+author: chandresh189
+ref: https://leetcode.com/problems/Unique-Email-Addresses/
+**/
+class Solution(object):
+    def numUniqueEmails(self, emails):
+        s = set()
+        for mail in emails:
+            p = mail.split("@")[0]
+            t = ""
+            for i in p:
+                if(i != "."):
+                    t = t + i
+            n = ""
+            for i in t:
+                if (i == '+'):
+                    break
+                else:
+                    n = n + i
+            fin = n+"@"+mail.split("@")[1]
+            s.add(fin)
+        return len(s) 
